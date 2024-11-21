@@ -30,8 +30,10 @@ Or
 1.5 **Eigen**
 Follow [OpenCV_Installation](https://github.com/opencv/opencv/releases), use **version 3.3.7**
 
-
-
+Or
+```
+    sudo apt-get install libeigen3-dev=3.3.7-1
+```
 
 ## 2. Build VINS-Mono on ROS
 Clone the repository and catkin_make:
