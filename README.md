@@ -20,7 +20,11 @@ Follow [Ceres Installation](http://ceres-solver.org/installation.html), use **ve
 Follow [PCL_Installation](https://github.com/PointCloudLibrary/pcl/releases), use **version 1.10.0**
 
 1.4 **OpenCV**
-4.5.0
+Follow [OpenCV_Installation](https://github.com/opencv/opencv/releases), use **version 4.5.0**
+Or
+```
+    sudo apt-get install libopencv-dev=4.5.0*
+```
 
 1.5 **Eigen**
 3.3.7
