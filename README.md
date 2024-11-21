@@ -21,21 +21,48 @@ Follow [PCL_Installation](https://github.com/PointCloudLibrary/pcl/releases), us
 
 1.4 **OpenCV**
 Follow [OpenCV_Installation](https://github.com/opencv/opencv/releases), use **version 4.5.0**
+```
+    sudo apt update && sudo apt install -y cmake 
+    
+    mkdir ~/catkin_ws/ThirdParty && cd ~/catkin_ws/ThirdParty
+    
+    git clone https://github.com/opencv/opencv.git
+    git clone https://github.com/opencv/opencv_contrib.git
+    cd opencv
+    git checkout 4.5.5
+    cd ../opencv_contrib
+    git checkout 4.5.5
+    cd ../opencv
+    mkdir build && cd build
+    
+    cmake -D CMAKE_BUILD_TYPE=RELEASE   -D CMAKE_INSTALL_PREFIX=../../opencv/install -D CMAKE_BUILD_TYPE=RELEASE  -D WITH_OPENGL=ON       -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules ..
+    
+    make install -j 4
+```
 
 Or
+
 ```
     sudo apt-get install libopencv-dev=4.5.0*
 ```
 
 1.5 **Eigen**
 Follow [OpenCV_Installation](https://github.com/opencv/opencv/releases), use **version 3.3.7**
+```
+    apt-get install wget unzip
+    cd ~/catkin_ws/ThirdParty  
+    wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz
+    tar zxf eigen-3.3.7.tar.gz
+    mv eigen-3.3.7.tar.gz eigen
+```
 
 Or
+
 ```
     sudo apt-get install libeigen3-dev=3.3.7-1
 ```
 
-## 2. Build VINS-Mono on ROS
+## 2. Build MCVO on ROS
 Clone the repository and catkin_make:
 ```
     cd ~/catkin_ws/src
@@ -48,10 +75,10 @@ Clone the repository and catkin_make:
 ## 3. Visual Odometry and Loop Closure on Public datasets
 Download [KITTI360 Dataset](https://www.cvlibs.net/datasets/kitti-360). The dataset has a total of 4 cameras, including two forward-looking cameras and one fisheye camera on the left and right. The system also works with [MultiCamSLAM dataset](https://github.com/neufieldrobotics/MultiCamSLAM) ([MultiCamData dataset](https://drive.google.com/drive/folders/151_ifKEE8WYHAeZ9hGcC69iotIpevBf8?usp=sharing)). We take KITTI360 sequence00 0-2277 frames as the example.
 
-3.1 (Optional) Select the feature extraction algorithm and the cameras you wish to run in /home/wang/catkin_ws/src/MCVO-main-new/MCVO/config/KITTI360/KITTI360,yaml.
+3.1 (Optional) Select the feature extraction algorithm and the cameras you wish to run in /home/wang/catkin_ws/src/MCVO-main-new/MCVO/config/KITTI360/KITTI360.yaml. You can also modify KITTI360.yaml to another yaml file in /home/wang/catkin_ws/src/MCVO-main-new/MCVO/launch/KITTI360.launch to fit your dataset
 
 
-3.2 Open three terminals, launch the vins_estimator , rviz and play the bag file respectively. Take KITTI360 sequence00 0-2277 frames for example
+3.2 Open three terminals, launch the mcvo_estimator , rviz and play the bag file respectively. Take KITTI360 sequence00 0-2277 frames for example
 ```
     roslaunch mcvo KITTI360.launch 
     rviz -d src/MCVO-main-new/MCVO/launch/KITTI360.rviz
