@@ -29,9 +29,9 @@ Follow [OpenCV_Installation](https://github.com/opencv/opencv/releases), use **v
     git clone https://github.com/opencv/opencv.git
     git clone https://github.com/opencv/opencv_contrib.git
     cd opencv
-    git checkout 4.5.5
+    git checkout 4.5.0
     cd ../opencv_contrib
-    git checkout 4.5.5
+    git checkout 4.5.0
     cd ../opencv
     mkdir build && cd build
     
