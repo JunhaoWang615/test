@@ -45,53 +45,18 @@ Clone the repository and catkin_make:
     source ~/catkin_ws/devel/setup.bash
 ```
 
-## 3. Visual Odometry and Pose Graph Optimization on Public datasets
+## 3. Visual Odometry and Loop Closure on Public datasets
 Download [KITTI360 Dataset](https://www.cvlibs.net/datasets/kitti-360). The dataset has a total of 4 cameras, including two forward-looking cameras and one fisheye camera on the left and right. The system also works with [MultiCamSLAM dataset](https://github.com/neufieldrobotics/MultiCamSLAM) ([MultiCamData dataset](https://drive.google.com/drive/folders/151_ifKEE8WYHAeZ9hGcC69iotIpevBf8?usp=sharing)). We take KITTI360 sequence00 0-2277 frames as the example.
 
-**3.1 visual-inertial odometry and loop closure**
+3.1 (Optional) Select the feature extraction algorithm and the cameras you wish to run in /home/wang/catkin_ws/src/MCVO-main-new/MCVO/config/KITTI360/KITTI360,yaml.
 
-3.1.1 Open three terminals, launch the vins_estimator , rviz and play the bag file respectively. Take MH_01 for example
+
+3.2 Open three terminals, launch the vins_estimator , rviz and play the bag file respectively. Take KITTI360 sequence00 0-2277 frames for example
 ```
-    roslaunch vins_estimator euroc.launch 
-    roslaunch vins_estimator vins_rviz.launch
-    rosbag play YOUR_PATH_TO_DATASET/MH_01_easy.bag 
+    roslaunch mcvo KITTI360.launch 
+    rviz -d src/MCVO-main-new/MCVO/launch/KITTI360.rviz
+    rosbag play YOUR_PATH_TO_DATASET/KITTI360_00_1.bag
 ```
-(If you fail to open vins_rviz.launch, just open an empty rviz, then load the config file: file -> Open Config-> YOUR_VINS_FOLDER/config/vins_rviz_config.rviz)
-
-3.1.2 (Optional) Visualize ground truth. We write a naive benchmark publisher to help you visualize the ground truth. It uses a naive strategy to align VINS with ground truth. Just for visualization. not for quantitative comparison on academic publications.
-```
-    roslaunch benchmark_publisher publish.launch  sequence_name:=MH_05_difficult
-```
- (Green line is VINS result, red line is ground truth). 
- 
-3.1.3 (Optional) You can even run EuRoC **without extrinsic parameters** between camera and IMU. We will calibrate them online. Replace the first command with:
-```
-    roslaunch vins_estimator euroc_no_extrinsic_param.launch
-```
-**No extrinsic parameters** in that config file.  Waiting a few seconds for initial calibration. Sometimes you cannot feel any difference as the calibration is done quickly.
-
-**3.2 map merge**
-
-After playing MH_01 bag, you can continue playing MH_02 bag, MH_03 bag ... The system will merge them according to the loop closure.
-
-**3.3 map reuse**
-
-3.3.1 map save
-
-Set the **pose_graph_save_path** in the config file (YOUR_VINS_FOLEDER/config/euroc/euroc_config.yaml). After playing MH_01 bag, input **s** in vins_estimator terminal, then **enter**. The current pose graph will be saved. 
-
-3.3.2 map load
-
-Set the **load_previous_pose_graph** to 1 before doing 3.1.1. The system will load previous pose graph from **pose_graph_save_path**. Then you can play MH_02 bag. New sequence will be aligned to the previous pose graph.
 
 
 
-## 7. Acknowledgements
-We use [ceres solver](http://ceres-solver.org/) for non-linear optimization and [DBoW2](https://github.com/dorian3d/DBoW2) for loop detection, and a generic [camera model](https://github.com/hengli/camodocal).
-
-## 8. Licence
-The source code is released under [GPLv3](http://www.gnu.org/licenses/) license.
-
-We are still working on improving the code reliability. For any technical issues, please contact Tong QIN <tong.qinATconnect.ust.hk> or Peiliang LI <pliapATconnect.ust.hk>.
-
-For commercial inquiries, please contact Shaojie SHEN <eeshaojieATust.hk>
