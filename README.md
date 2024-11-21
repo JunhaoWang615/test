@@ -21,6 +21,7 @@ Follow [PCL_Installation](https://github.com/PointCloudLibrary/pcl/releases), us
 
 1.4 **OpenCV**
 Follow [OpenCV_Installation](https://github.com/opencv/opencv/releases), use **version 4.5.0**
+
 Or
 ```
     sudo apt-get install libopencv-dev=4.5.0*
