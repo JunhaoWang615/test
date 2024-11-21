@@ -28,7 +28,8 @@ Or
 ```
 
 1.5 **Eigen**
-3.3.7
+Follow [OpenCV_Installation](https://github.com/opencv/opencv/releases), use **version 3.3.7**
+
 
 
 
