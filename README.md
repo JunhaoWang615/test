@@ -13,11 +13,11 @@ additional ROS pacakge
     sudo apt-get install ros-YOUR_DISTRO-cv-bridge ros-YOUR_DISTRO-tf ros-YOUR_DISTRO-message-filters ros-YOUR_DISTRO-image-transport
 ```
 
-1.2. **Ceres Solver**
+1.2 **Ceres Solver**
 Follow [Ceres Installation](http://ceres-solver.org/installation.html), use **version 2.0.0** and remember to **sudo make install**.
 
 1.3 **PCL**
-1.10.0
+Follow [PCL_Installation](https://github.com/PointCloudLibrary/pcl/releases), use **version 1.10.0**
 
 1.4 **OpenCV**
 4.5.0
