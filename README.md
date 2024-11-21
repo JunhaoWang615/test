@@ -39,14 +39,14 @@ Or
 Clone the repository and catkin_make:
 ```
     cd ~/catkin_ws/src
-    git clone https://github.com/  .git
+    git clone https://github.com/JunhaoWang615/MCVO.git
     cd ../
     catkin_make
     source ~/catkin_ws/devel/setup.bash
 ```
 
 ## 3. Visual Odometry and Pose Graph Optimization on Public datasets
-Download [KITTI360 Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets). Although it contains stereo cameras, we only use one camera. The system also works with [ETH-asl cla dataset](http://robotics.ethz.ch/~asl-datasets/maplab/multi_session_mapping_CLA/bags/). We take KITTI360 as the example.
+Download [KITTI360 Dataset](https://www.cvlibs.net/datasets/kitti-360). The dataset has a total of 4 cameras, including two forward-looking cameras and one fisheye camera on the left and right. The system also works with [MultiCamSLAM dataset](https://github.com/neufieldrobotics/MultiCamSLAM) or [MultiCamData dataset](https://drive.google.com/drive/folders/151_ifKEE8WYHAeZ9hGcC69iotIpevBf8?usp=sharing). We take KITTI360 sequence00 0-2277 frames as the example.
 
 **3.1 visual-inertial odometry and loop closure**
 
